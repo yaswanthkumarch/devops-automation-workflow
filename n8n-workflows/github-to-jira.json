@@ -1,7 +1,56 @@
 {
   "name": "GitHub to Jira Ticket Automation",
   "nodes": [
-    /* Export your actual n8n workflow JSON here */
+    {
+      "parameters": {
+        "events": ["push"],
+        "repository": "your-repo-name",
+        "owner": "your-github-username"
+      },
+      "name": "GitHub Trigger",
+      "type": "n8n-nodes-base.githubTrigger",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "credentials": {
+        "githubApi": {
+          "id": "1",
+          "name": "GitHub API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "fields": {
+          "project": "YOUR_PROJECT_KEY",
+          "summary": "New commit by {{$json[\"head_commit\"][\"author\"][\"name\"]}}: {{$json[\"head_commit\"][\"message\"]}}",
+          "description": "Commit URL: {{$json[\"head_commit\"][\"url\"]}}",
+          "issuetype": "Task"
+        }
+      },
+      "name": "Create Jira Issue",
+      "type": "n8n-nodes-base.jira",
+      "typeVersion": 1,
+      "position": [450, 300],
+      "credentials": {
+        "jiraApi": {
+          "id": "1",
+          "name": "Jira API"
+        }
+      }
+    }
   ],
-  "connections": {}
+  "connections": {
+    "GitHub Trigger": {
+      "main": [
+        [
+          {
+            "node": "Create Jira Issue",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
 }
