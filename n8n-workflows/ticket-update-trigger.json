@@ -1,0 +1,7 @@
+{
+  "name": "Ticket Update Trigger",
+  "nodes": [
+    /* Your n8n workflow JSON for ticket updates */
+  ],
+  "connections": {}
+}
