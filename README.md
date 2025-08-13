@@ -97,9 +97,4 @@ For a detailed walkthrough of the entire workflow from start to finish, please r
 - Detailed explanations for each platform (n8n, Logic Apps, Zapier, Make.com).
 - Troubleshooting tips and best practices for debugging common issues.
 
----
-
-## License
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
