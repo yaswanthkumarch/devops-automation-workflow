@@ -1,7 +1,46 @@
 {
   "name": "Ticket Update Trigger",
   "nodes": [
-    /* Your n8n workflow JSON for ticket updates */
+    {
+      "parameters": {
+        "resource": "issue",
+        "operation": "getAll",
+        "additionalFields": {},
+        "filters": {}
+      },
+      "name": "Jira Trigger",
+      "type": "n8n-nodes-base.jiraTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "channel": "#devops-alerts",
+        "text": "Ticket {{$json[\"issue\"][\"key\"]}} updated: {{$json[\"issue\"][\"fields\"][\"summary\"]}}"
+      },
+      "name": "Send Slack Message",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [450, 300],
+      "credentials": {
+        "slackApi": {
+          "id": "1",
+          "name": "Slack API"
+        }
+      }
+    }
   ],
-  "connections": {}
+  "connections": {
+    "Jira Trigger": {
+      "main": [
+        [
+          {
+            "node": "Send Slack Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
 }
