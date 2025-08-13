@@ -1,0 +1,7 @@
+{
+  "name": "GitHub to Jira Ticket Automation",
+  "nodes": [
+    /* Export your actual n8n workflow JSON here */
+  ],
+  "connections": {}
+}
