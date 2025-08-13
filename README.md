@@ -37,9 +37,5 @@ The workflow runs in a hybrid local + cloud environment, designed to reduce manu
 
 Contributions and feedback are welcome. Feel free to open issues or submit pull requests.
 
----
 
-## License
-
-This project is licensed under the MIT License. See `LICENSE` for details.
 
